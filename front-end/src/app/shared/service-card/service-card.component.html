@@ -2,8 +2,10 @@
   <div class="service-seal" aria-hidden="true">{{ item().seal }}</div>
   <h3 class="service-card-title">{{ item().name }}</h3>
   <p class="service-card-desc">{{ item().description }}</p>
-  <span class="service-status">{{ item().status === 'available' ? 'Available' : 'Coming soon' }}</span>
-
+  <!-- <span class="service-status">{{ item().status === 'available' ? 'Available' : 'Coming soon' }}</span> -->
+  @if (item().status !== 'available') {
+    <span class="service-status">Coming soon</span>
+  }
   @if (item().status === 'available') {
     <a
       class="service-card-link"
