@@ -1,0 +1,7 @@
+/* Your existing gradient design system, carried over unchanged from the
+   vanilla HTML/CSS/JS version — Angular doesn't force any styling
+   approach, so none of this needed to be rewritten. */
+@import './styles/base.css';
+@import './styles/layout.css';
+@import './styles/components.css';
+@import './styles/pages.css';

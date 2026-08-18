@@ -1,0 +1,61 @@
+<section class="tool-section" id="service-request-tool">
+  <div class="section-heading">
+    <h2>Request a Service</h2>
+    <p>Certificate Services, Insurance Agents, Housekeeping and IT Support all use this one request form.</p>
+  </div>
+  <div class="tool-layout">
+    <form class="tool-form-card" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label for="srType">Service</label>
+        <select id="srType" formControlName="serviceType">
+          <option value="CERTIFICATE">Certificate Services</option>
+          <option value="INSURANCE">Insurance Agents</option>
+          <option value="HOUSEKEEPING">Housekeeping</option>
+          <option value="IT_SUPPORT">IT Support for Developers</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="srName">Name</label>
+        <input type="text" id="srName" formControlName="name" placeholder="Your full name" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="srEmail">Email</label>
+          <input type="email" id="srEmail" formControlName="email" placeholder="you@example.com" />
+        </div>
+        <div class="field">
+          <label for="srPhone">Phone</label>
+          <input type="tel" id="srPhone" formControlName="phone" placeholder="+91 90000 00000" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="srDetails">What do you need?</label>
+        <textarea id="srDetails" formControlName="details" rows="3" placeholder="Briefly describe your request"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Submit request</button>
+
+      @if (statusMessage(); as msg) {
+        <div class="form-status visible" [style.color]="msg.isError ? 'var(--color-error)' : 'var(--color-available)'"
+             [style.background]="msg.isError ? 'rgba(169,59,59,0.12)' : 'rgba(46,125,107,0.12)'">
+          {{ msg.text }}
+        </div>
+      }
+    </form>
+
+    <div class="tool-result-card">
+      <h4>Your recent requests</h4>
+      @if (history().length === 0) {
+        <p style="color: var(--color-muted); margin:0;">Submit a request to see it here.</p>
+      } @else {
+        @for (r of history().slice(0, 5); track r.id) {
+          <div class="slip-history-item">
+            <div>
+              <strong>{{ typeLabels[r.serviceType] }}</strong>
+              <div style="font-size:var(--fs-caption); color:var(--color-muted);">{{ r.name }} — {{ r.status }}</div>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+</section>

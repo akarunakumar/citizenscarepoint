@@ -1,0 +1,56 @@
+<div class="container">
+  <p class="hero-eyebrow">Contact</p>
+  <h1>Get in touch</h1>
+  <p class="hero-sub">Questions, feedback or ideas for a new service — this goes to our backend now.</p>
+
+  <div class="ledger-divider"></div>
+
+  <div class="contact-layout">
+    <div class="contact-info">
+      <h3>Reach us</h3>
+      <div class="contact-info-item">
+        <span>Email</span>
+        hello&#64;citizencarepoint.example
+      </div>
+      <div class="contact-info-item">
+        <span>Phone</span>
+        +91 00000 00000
+      </div>
+      <div class="contact-info-item">
+        <span>Status</span>
+        Learning project — Phase 4
+      </div>
+    </div>
+
+    <form class="form-card" [formGroup]="form" (ngSubmit)="submit()">
+      @if (statusMessage(); as msg) {
+        <div class="form-status visible" [style.color]="msg.isError ? 'var(--color-error)' : 'var(--color-available)'"
+             [style.background]="msg.isError ? 'rgba(169,59,59,0.12)' : 'rgba(46,125,107,0.12)'">
+          {{ msg.text }}
+        </div>
+      }
+
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" formControlName="name" placeholder="Your full name" />
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" placeholder="you@example.com" />
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" formControlName="phone" placeholder="+91 90000 00000" />
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" formControlName="message" rows="4" placeholder="How can we help?"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Send message</button>
+    </form>
+  </div>
+</div>

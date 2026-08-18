@@ -1,0 +1,41 @@
+<section class="tool-section" id="gst-calculator-tool">
+  <div class="section-heading">
+    <h2>GST Calculator</h2>
+    <p>Work out GST-inclusive and GST-exclusive amounts. Calculated instantly in your browser.</p>
+  </div>
+  <div class="tool-layout">
+    <form class="tool-form-card" [formGroup]="form" (ngSubmit)="calculate()">
+      <div class="field">
+        <label for="gstAmount">Amount</label>
+        <input type="number" id="gstAmount" formControlName="amount" min="0" step="0.01" placeholder="e.g. 1000" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="gstRate">GST rate (%)</label>
+          <input type="number" id="gstRate" formControlName="rate" min="0" step="0.01" placeholder="e.g. 18" />
+        </div>
+        <div class="field">
+          <label for="gstMode">Amount is</label>
+          <select id="gstMode" formControlName="mode">
+            <option value="exclusive">GST-exclusive (add GST)</option>
+            <option value="inclusive">GST-inclusive (extract GST)</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Calculate</button>
+    </form>
+
+    <div class="tool-result-card">
+      <h4>Result</h4>
+      @if (errorMessage()) {
+        <p style="color: var(--color-error); margin:0;">{{ errorMessage() }}</p>
+      } @else if (result(); as r) {
+        <div class="calc-result-row"><span>Base amount</span><strong>₹{{ r.base.toFixed(2) }}</strong></div>
+        <div class="calc-result-row"><span>GST amount</span><strong>₹{{ r.gst.toFixed(2) }}</strong></div>
+        <div class="calc-result-row calc-result-total"><span>Total</span><strong>₹{{ r.total.toFixed(2) }}</strong></div>
+      } @else {
+        <p style="color: var(--color-muted); margin:0;">Enter an amount and rate, then calculate.</p>
+      }
+    </div>
+  </div>
+</section>

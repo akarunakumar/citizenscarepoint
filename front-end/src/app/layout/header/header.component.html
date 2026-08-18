@@ -1,0 +1,36 @@
+<header class="site-header">
+  <div class="brand">
+    <button
+      class="sidebar-toggle"
+      (click)="sidebarState.toggle()"
+      aria-label="Toggle menu"
+      [attr.aria-expanded]="sidebarState.isOpen()"
+    >
+      <span></span>
+    </button>
+    <a routerLink="/" style="display:flex;align-items:center;gap:0.6rem;">
+      <span class="brand-mark">C</span>
+      CitizenCarePoint
+    </a>
+  </div>
+
+  <nav class="main-nav">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/about" routerLinkActive="active">About</a>
+    <a routerLink="/services" routerLinkActive="active">Services</a>
+    <a routerLink="/contact" routerLinkActive="active">Contact</a>
+  </nav>
+
+  <!-- Phase 4c: real session state via AuthService (signal-based, so
+       this updates automatically the moment login/logout happens —
+       no manual DOM updates needed, unlike the old updateHeaderAuthUI()). -->
+  <div class="header-auth">
+    @if (authService.isLoggedIn()) {
+      <span class="header-greeting">Hi, {{ authService.session()?.name }}</span>
+      <button class="btn btn-ghost" type="button" (click)="logout()">Logout</button>
+    } @else {
+      <a routerLink="/login" class="btn btn-ghost">Login</a>
+      <a routerLink="/register" class="btn btn-primary">Register</a>
+    }
+  </div>
+</header>

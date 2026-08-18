@@ -1,0 +1,21 @@
+<article class="service-card" [attr.data-status]="item().status" [id]="item().id">
+  <div class="service-seal" aria-hidden="true">{{ item().seal }}</div>
+  <h3 class="service-card-title">{{ item().name }}</h3>
+  <p class="service-card-desc">{{ item().description }}</p>
+  <span class="service-status">{{ item().status === 'available' ? 'Available' : 'Coming soon' }}</span>
+
+  @if (item().status === 'available') {
+    <a
+      class="service-card-link"
+      [routerLink]="['/services']"
+      [fragment]="item().fragment"
+      [queryParams]="item().requestType ? { service: item().requestType } : null"
+    >
+      Open service →
+    </a>
+  } @else {
+    <a class="service-card-link disabled" aria-disabled="true" tabindex="-1">
+      Notify me when ready
+    </a>
+  }
+</article>

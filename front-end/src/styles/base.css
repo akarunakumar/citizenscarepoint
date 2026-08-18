@@ -1,0 +1,124 @@
+/* ============================================================
+   CitizenCarePoint — Design Tokens & Base Styles
+   Theme: "Civic Ledger" — official-document warmth: navy ink,
+   paper background, a gold seal accent for status/action.
+   ============================================================ */
+
+:root {
+  /* Color tokens */
+  --color-paper: #F5F2FB;
+  --color-paper-raised: #FFFFFF;
+  --color-ink: #16324F;          /* primary navy-teal, headings/nav */
+  --color-ink-soft: #345066;     /* secondary text on paper */
+  --color-muted: #6B7480;        /* captions, placeholders */
+  --color-line: #DCD5C3;         /* hairline rules, borders */
+  --color-accent: #B8722E;       /* seal gold/ochre — CTAs, highlights */
+  --color-accent-dark: #955A20;
+  --color-available: #2E7D6B;    /* muted teal — "available" status */
+  --color-coming-soon: #A08A5B;  /* muted brass — "coming soon" status */
+  --color-error: #A93B3B;
+
+  /* Gradient accents — used across CTAs, badges, icon tiles, and now the
+     header/hero/footer too, so the whole site reads as one visual
+     language rather than cards being an isolated style. */
+  --grad-1: linear-gradient(135deg, #6D28D9, #2563EB); /* purple -> blue */
+  --grad-2: linear-gradient(135deg, #F97316, #EF4444); /* orange -> red */
+  --grad-3: linear-gradient(135deg, #059669, #10B981);  /* deep -> light green */
+  --grad-4: linear-gradient(135deg, #DB2777, #9333EA); /* pink -> purple */
+  --grad-muted: linear-gradient(135deg, #9AA3AE, #6B7480); /* neutral / coming-soon */
+  --grad-brand: linear-gradient(135deg, #16324F, #2563EB); /* header/CTA band signature */
+
+  /* Typography */
+  --font-display: "Source Serif 4", "Lora", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+
+  /* Scale */
+  --fs-h1: clamp(2rem, 1.5rem + 2vw, 3.2rem);
+  --fs-h2: clamp(1.5rem, 1.2rem + 1.2vw, 2.2rem);
+  --fs-h3: 1.3rem;
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-caption: 0.75rem;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 0.875rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+
+  /* Layout */
+  --header-height: 68px;
+  --sidebar-width: 240px;
+  --radius: 12px;
+  --shadow-card: 0 1px 2px rgba(22, 50, 79, 0.06), 0 4px 16px rgba(22, 50, 79, 0.06);
+}
+
+/* Font loading (system fallbacks apply until these resolve) */
+@font-face {
+  font-family: "Source Serif 4";
+  src: local("Source Serif 4"), local("Source Serif Pro");
+  font-display: swap;
+}
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--color-ink);
+  background: var(--color-paper);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  line-height: 1.15;
+  margin: 0 0 var(--space-sm);
+  font-weight: 600;
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+p { margin: 0 0 var(--space-sm); color: var(--color-ink-soft); }
+a { color: inherit; text-decoration: none; }
+ul { margin: 0; padding: 0; list-style: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; }
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+/* Utility: a thin guilloché-style divider — hairline with a raised
+   diamond tick at center, echoing an official seal/document rule. */
+.ledger-divider {
+  position: relative;
+  height: 1px;
+  background: var(--color-line);
+  margin: var(--space-lg) 0;
+}
+.ledger-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 8px; height: 8px;
+  background: var(--color-accent);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Focus visibility (accessibility floor) */
+a:focus-visible, button:focus-visible, input:focus-visible,
+textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

@@ -1,0 +1,27 @@
+<div class="sidebar-scrim" [class.open]="sidebarState.isOpen()" (click)="sidebarState.close()"></div>
+<aside class="site-sidebar" [class.open]="sidebarState.isOpen()">
+  <p class="sidebar-heading">Overview</p>
+  <ul class="sidebar-nav">
+    <li>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="sidebarState.close()">
+        <span class="sidebar-dot"></span>Dashboard / Home
+      </a>
+    </li>
+    <li>
+      <a routerLink="/services" routerLinkActive="active" (click)="sidebarState.close()">
+        <span class="sidebar-dot"></span>All Services
+      </a>
+    </li>
+  </ul>
+
+  <p class="sidebar-heading">Services</p>
+  <ul class="sidebar-nav">
+    <li><a routerLink="/services" (click)="sidebarState.close()"><span class="sidebar-dot"></span>Salary Slip</a></li>
+    <li><a routerLink="/services" (click)="sidebarState.close()"><span class="sidebar-dot"></span>GST Calculator</a></li>
+    <li><a routerLink="/services" (click)="sidebarState.close()"><span class="sidebar-dot"></span>Housekeeping</a></li>
+    <li><a routerLink="/services" (click)="sidebarState.close()"><span class="sidebar-dot"></span>Certificate Services</a></li>
+    <li><a routerLink="/services" (click)="sidebarState.close()"><span class="sidebar-dot"></span>Insurance Agents</a></li>
+    <li><a routerLink="/services" (click)="sidebarState.close()"><span class="sidebar-dot"></span>IT Support</a></li>
+    <li><a routerLink="/services" (click)="sidebarState.close()"><span class="sidebar-dot"></span>Future Services</a></li>
+  </ul>
+</aside>

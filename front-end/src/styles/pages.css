@@ -1,0 +1,62 @@
+/* ============================================================
+   Page-specific tweaks — kept separate so shared components
+   stay generic and reusable across pages.
+   ============================================================ */
+
+/* About page */
+.about-vision {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--color-ink);
+  max-width: 40ch;
+  padding: var(--space-md) 0;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  margin: var(--space-md) 0;
+}
+.roadmap-list { margin-top: var(--space-sm); }
+.roadmap-list li {
+  display: flex;
+  gap: var(--space-sm);
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--color-line);
+  font-size: var(--fs-small);
+}
+.roadmap-phase {
+  font-family: var(--font-mono);
+  color: var(--color-accent-dark);
+  min-width: 5rem;
+}
+
+/* Services page intro */
+.services-page-header { margin-bottom: var(--space-lg); }
+
+/* Contact page two-column info + form */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: var(--space-lg);
+  align-items: start;
+}
+.contact-info h3 { margin-bottom: var(--space-xs); }
+.contact-info-item { margin-bottom: var(--space-md); }
+.contact-info-item span {
+  display: block;
+  font-size: var(--fs-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+  margin-bottom: 0.2rem;
+}
+
+@media (max-width: 800px) {
+  .contact-layout { grid-template-columns: 1fr; }
+}
+
+/* Auth pages centered shell */
+.auth-page .page-content {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}

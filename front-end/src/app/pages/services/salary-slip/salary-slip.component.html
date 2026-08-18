@@ -1,0 +1,70 @@
+<section class="tool-section" id="salary-slip-tool">
+  <div class="section-heading">
+    <h2>Salary Slip Generator</h2>
+    <p>Generate a salary slip from basic details. Recent slips are stored on the backend.</p>
+  </div>
+  <div class="tool-layout">
+    <form class="tool-form-card" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label for="slipName">Employee name</label>
+        <input type="text" id="slipName" formControlName="name" placeholder="Full name" />
+      </div>
+      <div class="field">
+        <label for="slipMonth">Pay month</label>
+        <input type="month" id="slipMonth" formControlName="month" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="slipBasic">Basic pay</label>
+          <input type="number" id="slipBasic" formControlName="basicPay" min="0" step="0.01" placeholder="e.g. 40000" />
+        </div>
+        <div class="field">
+          <label for="slipAllowances">Allowances</label>
+          <input type="number" id="slipAllowances" formControlName="allowances" min="0" step="0.01" placeholder="e.g. 5000" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="slipDeductions">Deductions</label>
+        <input type="number" id="slipDeductions" formControlName="deductions" min="0" step="0.01" placeholder="e.g. 2000" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Generate slip</button>
+    </form>
+
+    <div class="tool-result-card">
+      <h4>Preview</h4>
+      @if (errorMessage()) {
+        <p style="color: var(--color-error); margin:0;">{{ errorMessage() }}</p>
+      } @else if (preview(); as p) {
+        <div class="slip-preview">
+          <h4 style="margin-bottom:0.75rem;">Salary Slip — {{ p.month }}</h4>
+          <div class="calc-result-row"><span>Employee</span><strong>{{ p.name }}</strong></div>
+          <div class="calc-result-row"><span>Basic pay</span><strong>₹{{ p.basicPay.toFixed(2) }}</strong></div>
+          <div class="calc-result-row"><span>Allowances</span><strong>₹{{ p.allowances.toFixed(2) }}</strong></div>
+          <div class="calc-result-row"><span>Deductions</span><strong>-₹{{ p.deductions.toFixed(2) }}</strong></div>
+          <div class="calc-result-row calc-result-total"><span>Net pay</span><strong>₹{{ p.netPay.toFixed(2) }}</strong></div>
+        </div>
+      } @else {
+        <p style="color: var(--color-muted); margin:0;">Fill in the form to generate a slip.</p>
+      }
+    </div>
+  </div>
+
+  <div class="slip-history">
+    <h4 style="margin-bottom: var(--space-sm);">Recent slips</h4>
+    @if (historyError()) {
+      <div class="notice-card">{{ historyError() }}</div>
+    } @else if (history().length === 0) {
+      <div class="notice-card">No slips generated yet — fill in the form above.</div>
+    } @else {
+      @for (slip of history(); track slip.id) {
+        <div class="slip-history-item">
+          <div class="slip-history-summary" (click)="view(slip)" role="button" tabindex="0">
+            <strong>{{ slip.name }}</strong> — {{ slip.month }}
+            <div style="font-size:var(--fs-caption); color:var(--color-muted);">Net pay: ₹{{ slip.netPay.toFixed(2) }}</div>
+          </div>
+          <button type="button" class="btn btn-ghost" (click)="remove(slip.id)">Remove</button>
+        </div>
+      }
+    }
+  </div>
+</section>

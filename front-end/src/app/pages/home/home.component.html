@@ -1,0 +1,37 @@
+<div class="container">
+  <section class="hero">
+    <p class="hero-eyebrow">Citizen Services · One Platform</p>
+    <h1>Everyday services, gathered in one place.</h1>
+    <p class="hero-sub">
+      CitizenCarePoint is a single starting point for the services citizens
+      use regularly — from salary slips to GST calculations to home services —
+      so you stop juggling five different tools for five different tasks.
+    </p>
+    <div class="hero-actions">
+      <a routerLink="/services" class="btn btn-primary">Browse services</a>
+      <a routerLink="/about" class="btn btn-ghost">Learn more</a>
+    </div>
+  </section>
+
+  <div class="ledger-divider"></div>
+
+  <section>
+    <div class="section-heading">
+      <h2>Services for everyday needs</h2>
+      <p>Each service below is fully working — try one.</p>
+    </div>
+    <div class="service-grid">
+      @for (service of services; track service.id) {
+        <app-service-card [item]="service" />
+      }
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div>
+      <h2>Have an account already?</h2>
+      <p>Log in to pick up where a future version of this platform will let you continue.</p>
+    </div>
+    <a routerLink="/login" class="btn btn-primary">Login</a>
+  </div>
+</div>
