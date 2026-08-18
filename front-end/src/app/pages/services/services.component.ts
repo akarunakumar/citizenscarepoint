@@ -5,11 +5,12 @@ import { ServiceCardComponent } from '../../shared/service-card/service-card.com
 import { GstCalculatorComponent } from './gst-calculator/gst-calculator.component';
 import { SalarySlipComponent } from './salary-slip/salary-slip.component';
 import { ServiceRequestComponent } from './service-request/service-request.component';
+import { FreshersHubComponent } from './freshers-hub/freshers-hub.component'; 
 
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [RouterLink, ServiceCardComponent, GstCalculatorComponent, SalarySlipComponent, ServiceRequestComponent],
+  imports: [RouterLink, ServiceCardComponent, GstCalculatorComponent, SalarySlipComponent, ServiceRequestComponent, FreshersHubComponent],
   templateUrl: './services.component.html'
 })
 export class ServicesComponent {

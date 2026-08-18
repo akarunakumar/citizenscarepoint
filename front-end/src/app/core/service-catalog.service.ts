@@ -21,22 +21,12 @@ export class ServiceCatalogService {
       fragment: 'gst-calculator-tool'
     },
     {
-      id: 'housekeeping',
-      name: 'Housekeeping Services',
-      description: 'Request trusted housekeeping help for your home or office.',
-      seal: 'H',
+      id: 'freshers-hub',
+      name: "Freshers' Career Hub",
+      description: 'Tutorials to get started, plus practice interview questions from top companies.',
+      seal: 'F',
       status: 'available',
-      fragment: 'service-request-tool',
-      requestType: 'HOUSEKEEPING'
-    },
-    {
-      id: 'certificate-services',
-      name: 'Certificate Services',
-      description: 'Apply for caste certificates, income certificates and other commonly needed government certifications.',
-      seal: 'C',
-      status: 'available',
-      fragment: 'service-request-tool',
-      requestType: 'CERTIFICATE'
+      fragment: 'freshers-hub-tool'
     },
     {
       id: 'insurance-agents',
@@ -55,7 +45,26 @@ export class ServiceCatalogService {
       status: 'available',
       fragment: 'service-request-tool',
       requestType: 'IT_SUPPORT'
-    }
+    },
+    {
+      id: 'housekeeping',
+      name: 'Housekeeping Services',
+      description: 'Request trusted housekeeping help for your home or office.',
+      seal: 'H',
+      status: 'available',
+      fragment: 'service-request-tool',
+      requestType: 'HOUSEKEEPING'
+    },
+    {
+      id: 'certificate-services',
+      name: 'Certificate Services',
+      description: 'Apply for caste certificates, income certificates and other commonly needed government certifications.',
+      seal: 'C',
+      status: 'available',
+      fragment: 'service-request-tool',
+      requestType: 'CERTIFICATE'
+    },
+    
   ];
 
   getAll(): ServiceItem[] {

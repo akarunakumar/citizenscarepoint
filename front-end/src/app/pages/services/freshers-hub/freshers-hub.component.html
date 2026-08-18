@@ -1,0 +1,69 @@
+<section class="tool-section" id="freshers-hub-tool">
+  <div class="section-heading">
+    <h2>Freshers' Career Hub</h2>
+    <p>Tutorials to get started, plus practice interview questions from top companies.</p>
+  </div>
+
+  <div class="tabs">
+    <button
+      type="button"
+      class="tab-button"
+      [class.active]="activeTab() === 'tutorials'"
+      (click)="activeTab.set('tutorials')"
+    >
+      Tutorials
+    </button>
+    <button
+      type="button"
+      class="tab-button"
+      [class.active]="activeTab() === 'interview-prep'"
+      (click)="activeTab.set('interview-prep')"
+    >
+      Interview Prep
+    </button>
+  </div>
+
+  @if (activeTab() === 'tutorials') {
+    <div class="tab-panel">
+      <div class="tutorial-link-list">
+        @for (tutorial of tutorials; track tutorial.name) {
+          <a class="tutorial-link-card" [href]="tutorial.url" target="_blank" rel="noopener noreferrer">
+            <h4>{{ tutorial.name }} ↗</h4>
+            <p>{{ tutorial.description }}</p>
+          </a>
+        }
+      </div>
+    </div>
+  }
+
+  @if (activeTab() === 'interview-prep') {
+    <div class="tab-panel">
+      <p style="font-size: var(--fs-caption); color: var(--color-muted); margin-bottom: var(--space-md);">
+        Practice questions commonly asked at fresher-level interviews — not a guaranteed or verified list of exact past questions.
+      </p>
+
+      <div class="company-tabs">
+        @for (set of companies; track set.company) {
+          <button
+            type="button"
+            class="btn"
+            [class.btn-primary]="selectedCompany() === set.company"
+            [class.btn-ghost]="selectedCompany() !== set.company"
+            (click)="selectedCompany.set(set.company)"
+          >
+            {{ set.company }}
+          </button>
+        }
+      </div>
+
+      <div class="interview-qa-list">
+        @for (qa of selectedCompanyQuestions(); track qa.question) {
+          <div class="interview-qa-item">
+            <h4>{{ qa.question }}</h4>
+            <p>{{ qa.answer }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</section>
