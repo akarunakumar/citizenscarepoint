@@ -1,22 +1,30 @@
 <div class="container">
-  <div class="services-page-header">
-    <p class="hero-eyebrow">Services</p>
-    <h1>All CitizenCarePoint services</h1>
-    <p class="hero-sub">Every service on the platform, in one place.</p>
-  </div>
+  @if (selectedTool() === null) {
+    <div class="services-page-header">
+      <p class="hero-eyebrow">Services</p>
+      <h1>All CitizenCarePoint services</h1>
+      <p class="hero-sub">Every service on the platform, in one place.</p>
+    </div>
 
-  <div class="service-grid">
-    @for (service of services; track service.id) {
-      <app-service-card [item]="service" />
+    <div class="service-grid">
+      @for (service of services; track service.id) {
+        <app-service-card [item]="service" />
+      }
+    </div>
+  } @else {
+    @switch (selectedTool()) {
+      @case ('gst-calculator-tool') {
+        <app-gst-calculator />
+      }
+      @case ('salary-slip-tool') {
+        <app-salary-slip />
+      }
+      @case ('service-request-tool') {
+        <app-service-request />
+      }
     }
-  </div>
 
-  <div class="ledger-divider"></div>
-  <app-gst-calculator />
-
-  <div class="ledger-divider"></div>
-  <app-salary-slip />
-
-  <div class="ledger-divider"></div>
-  <app-service-request />
+    <div class="ledger-divider"></div>
+    <a routerLink="/services" class="btn btn-ghost">← Back to all services</a>
+  }
 </div>

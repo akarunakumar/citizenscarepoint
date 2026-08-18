@@ -9,7 +9,7 @@
       class="service-card-link"
       [routerLink]="['/services']"
       [fragment]="item().fragment"
-      [queryParams]="item().requestType ? { service: item().requestType } : null"
+      [queryParams]="item().requestType ? { tool: item().fragment, service: item().requestType } : { tool: item().fragment }"
     >
       Open service →
     </a>
